@@ -25,6 +25,7 @@
 #include <thread>
 #include <cstdio>
 #include <variant>
+#include <random>
 
 // Third-party
 #include <glm/glm.hpp>

@@ -1,0 +1,23 @@
+
+#ifndef RT_PLANE_H
+#define RT_PLANE_H
+
+#include <rt/objects/object.h>
+
+namespace RT {
+
+    class Plane : public IObject {
+        public:
+            Plane(const glm::vec3& normal, const glm::vec3& point);
+            ~Plane() override;
+
+            [[nodiscard]] bool Hit(const Ray& ray, HitRecord& hitRecord) const override;
+
+        private:
+            glm::vec3 _point;
+            glm::vec3 _normal;
+    };
+
+}
+
+#endif //RT_PLANE_H
