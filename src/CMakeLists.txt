@@ -5,6 +5,11 @@ set(CORE_SOURCE_FILES
     # Project files.
     "${PROJECT_SOURCE_DIR}/src/rt/application.cpp"
 
+    # Cameras.
+    "${PROJECT_SOURCE_DIR}/src/rt/cameras/camera.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/cameras/pinhole.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/cameras/thin_lens.cpp"
+
     # Objects.
     "${PROJECT_SOURCE_DIR}/src/rt/objects/object.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/objects/primitives/plane.cpp"

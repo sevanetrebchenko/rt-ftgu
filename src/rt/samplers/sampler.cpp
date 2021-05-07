@@ -96,6 +96,7 @@ namespace RT {
         float phi;
         glm::vec2 sample;
 
+        _diskSamples.resize(num);
 
         // Using Peter Shirley's concentric circle method.
         for (int i = 0; i < num; ++i) {
@@ -158,8 +159,15 @@ namespace RT {
             float sinTheta = std::sqrt(1.0f - cosTheta * cosTheta);
 
             _hemisphereSamples.emplace_back(sinTheta * cosPhi, sinTheta * sinPhi, cosTheta);
-
         }
+    }
+
+    int ISampler::GetNumSamples() const {
+        return _numSamples;
+    }
+
+    int ISampler::GetNumSampleSets() const {
+        return _numSampleSets;
     }
 
 }

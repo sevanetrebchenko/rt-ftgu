@@ -9,11 +9,14 @@ namespace RT {
     class ISampler {
         public:
             ISampler(int numSamples, int numSampleSets);
-            ~ISampler();
+            virtual ~ISampler();
 
             virtual void Generate() = 0;
 
             void SetCosinePower(float power); // Used for hemisphere sampling.
+
+            [[nodiscard]] int GetNumSamples() const;
+            [[nodiscard]] int GetNumSampleSets() const;
 
             // Sampling.
             [[nodiscard]] const glm::vec2& SampleUnitSquare();

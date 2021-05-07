@@ -4,6 +4,8 @@
 
 #include <rt/utilities/writer.h>
 #include <rt/objects/object.h>
+#include <rt/cameras/camera.h>
+#include <rt/samplers/sampler.h>
 
 namespace RT {
 
@@ -22,6 +24,8 @@ namespace RT {
             int _width;
             int _height;
             IWriter* _writer;
+            ICamera* _camera;
+            ISampler* _sampler;
 
             glm::vec3 _background;
             std::vector<IObject*> _objects;
