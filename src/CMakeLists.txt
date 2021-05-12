@@ -14,6 +14,12 @@ set(CORE_SOURCE_FILES
     "${PROJECT_SOURCE_DIR}/src/rt/cameras/pinhole.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/cameras/thin_lens.cpp"
 
+    # Lights.
+    "${PROJECT_SOURCE_DIR}/src/rt/lights/light.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/lights/ambient.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/lights/point.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/lights/directional.cpp"
+
     # Objects.
     "${PROJECT_SOURCE_DIR}/src/rt/objects/object.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/objects/primitives/plane.cpp"

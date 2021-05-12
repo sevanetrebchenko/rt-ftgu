@@ -6,6 +6,7 @@
 #include <rt/objects/object.h>
 #include <rt/cameras/camera.h>
 #include <rt/samplers/sampler.h>
+#include <rt/lights/light.h>
 
 namespace RT {
 
@@ -28,7 +29,11 @@ namespace RT {
             ISampler* _sampler;
 
             glm::vec3 _background;
+
+            // Scene data.
+            ILight* _ambient; // Only one ambient light per scene.
             std::vector<IObject*> _objects;
+            std::vector<ILight*> _lights;
     };
 
 }

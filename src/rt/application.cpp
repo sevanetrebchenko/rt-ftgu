@@ -8,6 +8,11 @@
 // Objects.
 #include <rt/objects/primitives/sphere.h>
 
+// Lights.
+#include <rt/lights/ambient.h>
+#include <rt/lights/point.h>
+#include <rt/lights/directional.h>
+
 namespace RT {
 
     Application::Application(const std::string& name, int width, int height) : _width(width),
@@ -21,6 +26,9 @@ namespace RT {
 
     void Application::Init() {
         _sampler->Generate();
+
+        _ambient = new Ambient();
+
         _objects.push_back(new Sphere(glm::vec3(0.0f), 5.0f));
         _objects.push_back(new Sphere(glm::vec3(-5.0f, 0.0f, -5.0f), 5.0f));
     }
