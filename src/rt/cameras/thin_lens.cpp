@@ -9,6 +9,7 @@ namespace RT {
                                                                                                                                                                                               _focusDistance(focusDistance),
                                                                                                                                                                                               _sampler(sampler)
                                                                                                                                                                                               {
+        _sampler->Generate();
     }
 
     ThinLens::~ThinLens() {

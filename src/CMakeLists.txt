@@ -5,6 +5,10 @@ set(CORE_SOURCE_FILES
     # Project files.
     "${PROJECT_SOURCE_DIR}/src/rt/application.cpp"
 
+    # BRDFs.
+    "${PROJECT_SOURCE_DIR}/src/rt/brdf/brdf.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/brdf/lambertian.cpp"
+
     # Cameras.
     "${PROJECT_SOURCE_DIR}/src/rt/cameras/camera.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/cameras/pinhole.cpp"
@@ -29,6 +33,7 @@ set(CORE_SOURCE_FILES
     "${PROJECT_SOURCE_DIR}/src/rt/utilities/writer.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/utilities/directory.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/utilities/random.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/utilities/onb.cpp"
 )
 
 add_executable(rt ${CORE_SOURCE_FILES})
