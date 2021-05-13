@@ -15,6 +15,7 @@
 
 // Materials.
 #include <rt/materials/matte.h>
+#include <rt/materials/phong.h>
 
 namespace RT {
 
@@ -32,11 +33,12 @@ namespace RT {
 
         // Lights.
         _ambient = new Ambient(1.0f, glm::vec3(0.5f));
-        _lights.push_back(new Point(glm::vec3(0.0f, 8.0f, 0.0f)));
+        _lights.push_back(new Point(glm::vec3(8.0f, 2.0f, 8.0f)));
+//        _lights.push_back(new Directional(glm::vec3(1.0f, 0.0f, 1.0f)));
 
         // Objects.
-        _objects.push_back(new Sphere(new Matte(glm::vec3(1.0f), 1.0f, 1.0f), glm::vec3(0.0f), 5.0f));
-        _objects.push_back(new Sphere(new Matte(glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, 1.0f), glm::vec3(-5.0f, 0.0f, -5.0f), 5.0f));
+        _objects.push_back(new Sphere(new Phong(glm::vec3(0.0f), 1.0f, glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, glm::vec3(1.0f), 1.0f, 15.0f), glm::vec3(0.0f), 5.0f));
+        _objects.push_back(new Sphere(new Matte(glm::vec3(0.5f), 1.0f, glm::vec3(1.0f), 1.0f), glm::vec3(-5.0f, 0.0f, -5.0f), 5.0f));
     }
 
     void Application::Run() {

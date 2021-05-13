@@ -16,4 +16,8 @@ namespace RT {
         return input.x * _axes[0] + input.y * _axes[1] + input.z * _axes[2];
     }
 
+    glm::vec3 OrthonormalBasis::GetLocalVector(float x, float y, float z) const {
+        return x * _axes[0] + y * _axes[1] + z * _axes[2];
+    }
+
 }

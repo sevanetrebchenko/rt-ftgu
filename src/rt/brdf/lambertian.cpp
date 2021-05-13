@@ -4,10 +4,10 @@
 
 namespace RT {
 
-    Lambertian::Lambertian(ISampler* sampler, float diffuseCoefficient, const glm::vec3 &color) : IBRDF(sampler),
-                                                                                                  _diffuseCoefficient(diffuseCoefficient),
-                                                                                                  _diffuseColor(color)
-                                                                                                  {
+    Lambertian::Lambertian(ISampler* sampler, const glm::vec3& diffuseColor, float diffuseCoefficient) : IBRDF(sampler),
+                                                                                                         _diffuseCoefficient(diffuseCoefficient),
+                                                                                                         _diffuseColor(diffuseColor)
+                                                                                                         {
     }
 
     Lambertian::~Lambertian() = default;

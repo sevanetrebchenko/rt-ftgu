@@ -4,10 +4,10 @@
 
 namespace RT {
 
-    Matte::Matte(const glm::vec3 &color, float ambientBrightness, float diffuseBrightness) : IMaterial(),
-                                                                                             _ambient(new Lambertian(new MultiStratified(), ambientBrightness, color)),
-                                                                                             _diffuse(new Lambertian(new MultiStratified(), diffuseBrightness, color))
-                                                                                             {
+    Matte::Matte(const glm::vec3& ambientColor, float ambientCoefficient, const glm::vec3& diffuseColor, float diffuseCoefficient) : IMaterial(),
+                                                                                                                                   _ambient(new Lambertian(new MultiStratified(), ambientColor, ambientCoefficient)),
+                                                                                                                                   _diffuse(new Lambertian(new MultiStratified(), diffuseColor, diffuseCoefficient))
+                                                                                                                                   {
     }
 
     Matte::~Matte() {
@@ -30,4 +30,5 @@ namespace RT {
 
         return radiance;
     }
+
 }

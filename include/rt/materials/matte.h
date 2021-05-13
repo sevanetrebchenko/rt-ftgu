@@ -9,7 +9,7 @@ namespace RT {
 
     class Matte : public IMaterial {
         public:
-            explicit Matte(const glm::vec3& color, float ambientBrightness = 1.0f, float diffuseBrightness = 1.0f);
+            Matte(const glm::vec3& ambientColor, float ambientCoefficient, const glm::vec3& diffuseColor, float diffuseCoefficient);
             ~Matte() override;
 
             [[nodiscard]] glm::vec3 GetRadiance(const Ray& ray, const HitRecord& hitRecord, const SceneData& sceneData) override;

@@ -8,6 +8,8 @@ set(CORE_SOURCE_FILES
     # BRDFs.
     "${PROJECT_SOURCE_DIR}/src/rt/brdf/brdf.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/brdf/lambertian.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/brdf/glossy.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/brdf/reflective.cpp"
 
     # Cameras.
     "${PROJECT_SOURCE_DIR}/src/rt/cameras/camera.cpp"
@@ -23,6 +25,7 @@ set(CORE_SOURCE_FILES
     # Materials.
     "${PROJECT_SOURCE_DIR}/src/rt/materials/material.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/materials/matte.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/materials/phong.cpp"
 
     # Objects.
     "${PROJECT_SOURCE_DIR}/src/rt/objects/object.cpp"

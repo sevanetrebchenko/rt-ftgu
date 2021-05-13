@@ -8,10 +8,11 @@ namespace RT {
 
     class OrthonormalBasis {
         public:
-            OrthonormalBasis(const glm::vec3& normal);
+            explicit OrthonormalBasis(const glm::vec3& normal);
             ~OrthonormalBasis();
 
-            glm::vec3 GetLocalVector(const glm::vec3& input) const;
+            [[nodiscard]] glm::vec3 GetLocalVector(const glm::vec3& input) const;
+            [[nodiscard]] glm::vec3 GetLocalVector(float x, float y, float z) const;
 
         private:
             glm::vec3 _axes[3];
