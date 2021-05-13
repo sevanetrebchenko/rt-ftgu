@@ -3,6 +3,7 @@
 #define RT_POINT_H
 
 #include <rt/lights/light.h>
+#include <rt/utilities/hit_record.h>
 
 namespace RT {
 

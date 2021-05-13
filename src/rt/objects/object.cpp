@@ -3,9 +3,15 @@
 
 namespace RT {
 
-    IObject::IObject() : _color(glm::vec3(1.0f)) {
+    IObject::IObject(IMaterial* material) : _material(material) {
     }
 
-    IObject::~IObject() = default;
+    IObject::~IObject() {
+        delete _material;
+    }
+
+    IMaterial *IObject::GetMaterial() const {
+        return _material;
+    }
 
 }

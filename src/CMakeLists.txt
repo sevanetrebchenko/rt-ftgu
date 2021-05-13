@@ -20,6 +20,10 @@ set(CORE_SOURCE_FILES
     "${PROJECT_SOURCE_DIR}/src/rt/lights/point.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/lights/directional.cpp"
 
+    # Materials.
+    "${PROJECT_SOURCE_DIR}/src/rt/materials/material.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/materials/matte.cpp"
+
     # Objects.
     "${PROJECT_SOURCE_DIR}/src/rt/objects/object.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/objects/primitives/plane.cpp"
@@ -40,6 +44,7 @@ set(CORE_SOURCE_FILES
     "${PROJECT_SOURCE_DIR}/src/rt/utilities/directory.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/utilities/random.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/utilities/onb.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/utilities/scene_data.cpp"
 )
 
 add_executable(rt ${CORE_SOURCE_FILES})

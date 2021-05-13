@@ -8,7 +8,7 @@ namespace RT {
 
     class Plane : public IObject {
         public:
-            Plane(const glm::vec3& normal, const glm::vec3& point);
+            Plane(IMaterial* material, const glm::vec3& normal, const glm::vec3& point);
             ~Plane() override;
 
             [[nodiscard]] bool Hit(const Ray& ray, HitRecord& hitRecord) const override;

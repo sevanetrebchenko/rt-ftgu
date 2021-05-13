@@ -3,10 +3,10 @@
 
 namespace RT {
 
-    Plane::Plane(const glm::vec3 &normal, const glm::vec3 &point) : IObject(),
-                                                                    _point(point),
-                                                                    _normal(normal)
-                                                                    {
+    Plane::Plane(IMaterial* material, const glm::vec3 &normal, const glm::vec3 &point) : IObject(material),
+                                                                                         _point(point),
+                                                                                         _normal(normal)
+                                                                                         {
     }
 
     Plane::~Plane() = default;
@@ -30,6 +30,7 @@ namespace RT {
         hitRecord.dt = t;
         hitRecord.normal = _normal;
         hitRecord.point = ray.StepTo(t);
+        hitRecord.material = _material;
 
         return true;
     }

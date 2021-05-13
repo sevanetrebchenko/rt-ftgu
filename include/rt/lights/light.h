@@ -3,9 +3,11 @@
 #define RT_LIGHT_H
 
 #include <pch.h>
-#include <rt/utilities/hit_record.h>
 
 namespace RT {
+
+    // Forward declaration.
+    class HitRecord;
 
     class ILight {
         public:

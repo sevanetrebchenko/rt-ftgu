@@ -9,8 +9,8 @@ namespace RT {
 
     class Standard : public ISampler {
         public:
-            Standard(int numSamples, int numSampleSets);
-            ~Standard();
+            explicit Standard(int numSamples = 36, int numSampleSets = 83);
+            ~Standard() override;
 
             void Generate() override;
     };

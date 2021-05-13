@@ -8,8 +8,8 @@ namespace RT {
 
     class NRooks : public ISampler {
         public:
-            NRooks(int numSamples, int numSampleSets);
-            ~NRooks();
+            explicit NRooks(int numSamples = 36, int numSampleSets = 83);
+            ~NRooks() override;
 
             void Generate() override;
     };

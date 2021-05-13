@@ -13,6 +13,9 @@
 #include <rt/lights/point.h>
 #include <rt/lights/directional.h>
 
+// Materials.
+#include <rt/materials/matte.h>
+
 namespace RT {
 
     Application::Application(const std::string& name, int width, int height) : _width(width),
@@ -20,17 +23,20 @@ namespace RT {
                                                                                _background(glm::vec3(0.0f)),
                                                                                _writer(new JPGWriter(name, width, height)),
                                                                                _camera(new Pinhole(glm::vec3(0.0f, 0.0f, 100.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 20.0f, (float)_width / (float)_height)),
-                                                                               _sampler(new MultiStratified(36, 83))
+                                                                               _sampler(new MultiStratified())
                                                                                {
     }
 
     void Application::Init() {
         _sampler->Generate();
 
-        _ambient = new Ambient();
+        // Lights.
+        _ambient = new Ambient(1.0f, glm::vec3(0.5f));
+        _lights.push_back(new Point(glm::vec3(0.0f, 8.0f, 0.0f)));
 
-        _objects.push_back(new Sphere(glm::vec3(0.0f), 5.0f));
-        _objects.push_back(new Sphere(glm::vec3(-5.0f, 0.0f, -5.0f), 5.0f));
+        // Objects.
+        _objects.push_back(new Sphere(new Matte(glm::vec3(1.0f), 1.0f, 1.0f), glm::vec3(0.0f), 5.0f));
+        _objects.push_back(new Sphere(new Matte(glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, 1.0f), glm::vec3(-5.0f, 0.0f, -5.0f), 5.0f));
     }
 
     void Application::Run() {
@@ -67,16 +73,6 @@ namespace RT {
                 }
 
                 radiance /= (float)numSamples;
-
-
-//                // Antialiasing.
-//                for (int sample = 0; sample < samplesPerPixel; ++sample) {
-//                    u = ((float)x + glm::linearRand(0.0f, 1.0f)) / (float)(_width - 1);
-//                    v = ((float)y + glm::linearRand(0.0f, 1.0f)) / (float)(_height - 1);
-//
-//                    pixelColor += RayColor(_camera.GetRay(u, v), numRayBounces);
-//                }
-
                 _writer->WriteColor(x, y, radiance);
             }
         }
@@ -89,12 +85,28 @@ namespace RT {
     glm::vec3 Application::Trace(const Ray &ray) const {
         HitRecord hitRecord;
 
+        bool hit = false;
+        float nearest = std::numeric_limits<float>::max();
+
+        // Intersect with all objects to get the nearest intersection.
         for (IObject* object : _objects) {
-            if (object->Hit(ray, hitRecord)) {
-                return glm::vec3(1.0f, 0.0f, 0.0f);
+            HitRecord temp;
+
+            if (object->Hit(ray, temp) && (temp.dt < nearest)) {
+                hit = true;
+                nearest = temp.dt;
+                hitRecord = temp;
             }
         }
 
-        return _background;
+        if (!hit) {
+            return _background;
+        }
+
+        SceneData sceneData;
+        sceneData._ambient = _ambient;
+        sceneData._lights = &_lights;
+
+        return hitRecord.material->GetRadiance(ray, hitRecord, sceneData);
     }
 }

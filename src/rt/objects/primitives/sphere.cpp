@@ -3,10 +3,10 @@
 
 namespace RT {
 
-    Sphere::Sphere(const glm::vec3 &center, float radius) : IObject(),
-                                                            _center(center),
-                                                            _radius(radius)
-                                                            {
+    Sphere::Sphere(IMaterial* material, const glm::vec3 &center, float radius) : IObject(material),
+                                                                                 _center(center),
+                                                                                 _radius(radius)
+                                                                                 {
     }
 
     Sphere::~Sphere() = default;
@@ -38,6 +38,7 @@ namespace RT {
             hitRecord.dt = t;
             hitRecord.point = point;
             hitRecord.normal = glm::normalize((point - _center) / _radius);
+            hitRecord.material = _material;
 
             return true;
         }
@@ -52,6 +53,7 @@ namespace RT {
             hitRecord.dt = t;
             hitRecord.point = point;
             hitRecord.normal = glm::normalize((point - _center) / _radius);
+            hitRecord.material = _material;
 
             return true;
         }

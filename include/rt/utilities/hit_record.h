@@ -3,6 +3,7 @@
 #define RT_HIT_RECORD_H
 
 #include <pch.h>
+#include <rt/materials/material.h>
 
 namespace RT {
 
@@ -10,11 +11,10 @@ namespace RT {
         HitRecord();
         ~HitRecord();
 
-        bool hit;
         float dt;
         glm::vec3 point;
         glm::vec3 normal;
-        glm::vec3 color;
+        IMaterial* material;
     };
 
 }

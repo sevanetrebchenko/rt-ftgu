@@ -8,8 +8,8 @@ namespace RT {
 
     class Stratified : public ISampler {
         public:
-            Stratified(int numSamples, int numSampleSets);
-            ~Stratified();
+            explicit Stratified(int numSamples = 36, int numSampleSets = 83);
+            ~Stratified() override;
 
             void Generate() override;
     };
