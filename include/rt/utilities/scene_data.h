@@ -3,16 +3,20 @@
 #define RT_SCENE_DATA_H
 
 #include <pch.h>
-#include <rt/lights/light.h>
 
 namespace RT {
+
+    // Forward declarations.
+    class ILight;
+    class IObject;
 
     struct SceneData {
         SceneData();
         ~SceneData();
 
-        ILight* _ambient;
-        std::vector<ILight*>* _lights;
+        ILight* ambient;
+        std::vector<ILight*>* lights;
+        std::vector<IObject*>* objects;
     };
 
 }

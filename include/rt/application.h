@@ -32,7 +32,7 @@ namespace RT {
 
             // Scene data.
             ILight* _ambient; // Only one ambient light per scene.
-            std::vector<IObject*> _objects;
+            mutable std::vector<IObject*> _objects;
             mutable std::vector<ILight*> _lights;
     };
 

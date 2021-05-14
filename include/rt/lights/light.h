@@ -3,11 +3,11 @@
 #define RT_LIGHT_H
 
 #include <pch.h>
+#include <rt/utilities/ray.h>
+#include <rt/utilities/scene_data.h>
+#include <rt/utilities/hit_record.h>
 
 namespace RT {
-
-    // Forward declaration.
-    class HitRecord;
 
     class ILight {
         public:
@@ -16,6 +16,10 @@ namespace RT {
 
             [[nodiscard]] virtual glm::vec3 GetRadiance(const HitRecord& hitRecord) = 0;
             [[nodiscard]] virtual glm::vec3 GetDirection(const HitRecord& hitRecord) = 0;
+            [[nodiscard]] virtual bool IsShadowed(const Ray& ray, const SceneData& sceneData) const = 0;
+
+            [[nodiscard]] bool CastsShadows() const;
+
 
         protected:
             bool _projectShadows;

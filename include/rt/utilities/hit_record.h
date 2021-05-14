@@ -3,9 +3,11 @@
 #define RT_HIT_RECORD_H
 
 #include <pch.h>
-#include <rt/materials/material.h>
 
 namespace RT {
+
+    // Forward declaration.
+    class IMaterial;
 
     struct HitRecord {
         HitRecord();
@@ -15,6 +17,13 @@ namespace RT {
         glm::vec3 point;
         glm::vec3 normal;
         IMaterial* material;
+    };
+
+    struct ShadowHitRecord {
+        ShadowHitRecord();
+        ~ShadowHitRecord();
+
+        float dt;
     };
 
 }

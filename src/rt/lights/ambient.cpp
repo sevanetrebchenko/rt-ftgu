@@ -18,4 +18,8 @@ namespace RT {
         std::cerr << "Calling GetDirection on ambient light - ambient lights have no direction." << std::endl;
         return glm::vec3(0.0f);
     }
+
+    bool Ambient::IsShadowed(const Ray &ray, const SceneData &sceneData) const {
+        return false; // Ambient lights produce no shadows.
+    }
 }

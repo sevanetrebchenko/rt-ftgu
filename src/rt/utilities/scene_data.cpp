@@ -3,7 +3,7 @@
 
 namespace RT {
 
-    SceneData::SceneData() : _ambient(nullptr) {
+    SceneData::SceneData() : ambient(nullptr) {
     }
 
     SceneData::~SceneData() {

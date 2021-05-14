@@ -2,11 +2,10 @@
 #ifndef RT_MATERIAL_H
 #define RT_MATERIAL_H
 
-#pragma once
-
 #include <pch.h>
 #include <rt/utilities/ray.h>
 #include <rt/utilities/scene_data.h>
+#include <rt/utilities/hit_record.h>
 
 namespace RT {
 

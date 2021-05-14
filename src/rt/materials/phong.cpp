@@ -1,6 +1,7 @@
 
 #include <rt/materials/phong.h>
 #include <rt/samplers/multi_stratified.h>
+#include <rt/lights/light.h>
 
 namespace RT {
 
@@ -21,14 +22,23 @@ namespace RT {
 
     glm::vec3 Phong::GetRadiance(const Ray &ray, const HitRecord &hitRecord, const SceneData &sceneData) {
         glm::vec3 D = -ray.direction;
-        glm::vec3 radiance = _ambient->GetReflectance(hitRecord, D) * sceneData._ambient->GetRadiance(hitRecord); // Start with ambient contribution.
+        glm::vec3 radiance = _ambient->GetReflectance(hitRecord, D) * sceneData.ambient->GetRadiance(hitRecord); // Start with ambient contribution.
 
-        for (ILight* light : *sceneData._lights) {
+        for (ILight* light : *sceneData.lights) {
             glm::vec3 L = light->GetDirection(hitRecord);
             float NdotL = glm::dot(hitRecord.normal, L);
 
             if (NdotL > 0.0f) {
-                radiance += (_diffuse->GetBRDF(hitRecord, D, L) + _specular->GetBRDF(hitRecord, D, L)) * light->GetRadiance(hitRecord) * NdotL; // Diffuse Phong model.
+                bool shadowed = false;
+
+                if (light->CastsShadows()) {
+                    Ray shadowRay(hitRecord.point, L);
+                    shadowed = light->IsShadowed(shadowRay, sceneData);
+                }
+
+                if (!shadowed) {
+                    radiance += (_diffuse->GetBRDF(hitRecord, D, L) + _specular->GetBRDF(hitRecord, D, L)) * light->GetRadiance(hitRecord) * NdotL; // Diffuse Phong model.
+                }
             }
         }
 

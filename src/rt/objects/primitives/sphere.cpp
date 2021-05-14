@@ -3,6 +3,8 @@
 
 namespace RT {
 
+    const float Sphere::_epsilon = 0.001f;
+
     Sphere::Sphere(IMaterial* material, const glm::vec3 &center, float radius) : IObject(material),
                                                                                  _center(center),
                                                                                  _radius(radius)
@@ -32,7 +34,7 @@ namespace RT {
         t = (-b - discriminant) / denominator;
 
         // Intersection at first root.
-        if (t > std::numeric_limits<float>::epsilon()) {
+        if (t > _epsilon) {
             glm::vec3 point = ray.StepTo(t);
 
             hitRecord.dt = t;
@@ -47,7 +49,7 @@ namespace RT {
         t = (-b + discriminant) / denominator;
 
         // Intersection at second root.
-        if (t > std::numeric_limits<float>::epsilon()) {
+        if (t > _epsilon) {
             glm::vec3 point = ray.StepTo(t);
 
             hitRecord.dt = t;
@@ -59,5 +61,13 @@ namespace RT {
         }
 
         return false;
+    }
+
+    bool Sphere::Hit(const Ray &ray, ShadowHitRecord &shadowHitRecord) const {
+        HitRecord temp;
+        bool hit = Hit(ray, temp);
+
+        shadowHitRecord.dt = temp.dt;
+        return hit;
     }
 }

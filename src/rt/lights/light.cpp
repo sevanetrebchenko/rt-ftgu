@@ -8,4 +8,8 @@ namespace RT {
 
     ILight::~ILight() = default;
 
+    bool ILight::CastsShadows() const {
+        return _projectShadows;
+    }
+
 }

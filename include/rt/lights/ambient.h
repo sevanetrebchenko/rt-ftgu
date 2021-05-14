@@ -14,6 +14,8 @@ namespace RT {
             [[nodiscard]] glm::vec3 GetRadiance(const HitRecord& hitRecord) override;
             [[nodiscard]] glm::vec3 GetDirection(const HitRecord& hitRecord) override;
 
+            [[nodiscard]] bool IsShadowed(const Ray& ray, const SceneData& sceneData) const override;
+
         private:
             float _brightness;
             glm::vec3 _color;

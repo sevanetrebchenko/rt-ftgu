@@ -3,6 +3,8 @@
 
 namespace RT {
 
+    const float Plane::_epsilon = 0.001f;
+
     Plane::Plane(IMaterial* material, const glm::vec3 &normal, const glm::vec3 &point) : IObject(material),
                                                                                          _point(point),
                                                                                          _normal(normal)
@@ -22,7 +24,7 @@ namespace RT {
         float t = glm::dot((_point - ray.origin), _normal) / denom;
 
         // Intersection happens before ray origin.
-        if (t < std::numeric_limits<float>::epsilon()) {
+        if (t < _epsilon) {
             return false;
         }
 
@@ -33,5 +35,13 @@ namespace RT {
         hitRecord.material = _material;
 
         return true;
+    }
+
+    bool Plane::Hit(const Ray &ray, ShadowHitRecord &shadowHitRecord) const {
+        HitRecord temp;
+        bool hit = Hit(ray, temp);
+
+        shadowHitRecord.dt = temp.dt;
+        return hit;
     }
 }

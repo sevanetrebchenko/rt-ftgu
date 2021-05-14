@@ -7,6 +7,7 @@
 
 // Objects.
 #include <rt/objects/primitives/sphere.h>
+#include <rt/objects/primitives/plane.h>
 
 // Lights.
 #include <rt/lights/ambient.h>
@@ -33,12 +34,13 @@ namespace RT {
 
         // Lights.
         _ambient = new Ambient(1.0f, glm::vec3(0.5f));
-        _lights.push_back(new Point(glm::vec3(8.0f, 2.0f, 8.0f)));
-//        _lights.push_back(new Directional(glm::vec3(1.0f, 0.0f, 1.0f)));
+        _lights.push_back(new Point(glm::vec3(8.0f, 8.0f, 8.0f), 2.0f));
+//        lights.push_back(new Directional(glm::vec3(1.0f, 0.0f, 1.0f)));
 
         // Objects.
         _objects.push_back(new Sphere(new Phong(glm::vec3(0.0f), 1.0f, glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, glm::vec3(1.0f), 1.0f, 15.0f), glm::vec3(0.0f), 5.0f));
-        _objects.push_back(new Sphere(new Matte(glm::vec3(0.5f), 1.0f, glm::vec3(1.0f), 1.0f), glm::vec3(-5.0f, 0.0f, -5.0f), 5.0f));
+        _objects.push_back(new Sphere(new Matte(glm::vec3(0.1f), 1.0f, glm::vec3(1.0f), 1.0f), glm::vec3(-10.0f, 0.0f, -4.0f), 6.0f));
+        _objects.push_back(new Plane(new Matte(glm::vec3(0.1f), 1.0f, glm::vec3(0.5f), 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, -6.0f, 0.0f)));
     }
 
     void Application::Run() {
@@ -106,8 +108,9 @@ namespace RT {
         }
 
         SceneData sceneData;
-        sceneData._ambient = _ambient;
-        sceneData._lights = &_lights;
+        sceneData.ambient = _ambient;
+        sceneData.lights = &_lights;
+        sceneData.objects = &_objects;
 
         return hitRecord.material->GetRadiance(ray, hitRecord, sceneData);
     }

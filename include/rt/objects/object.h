@@ -15,7 +15,8 @@ namespace RT {
             virtual ~IObject();
 
             virtual bool Hit(const Ray& ray, HitRecord& hitRecord) const = 0;
-            IMaterial* GetMaterial() const;
+            virtual bool Hit(const Ray& ray, ShadowHitRecord& shadowHitRecord) const = 0;
+            [[nodiscard]] IMaterial* GetMaterial() const;
 
         protected:
             IMaterial* _material;
