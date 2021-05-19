@@ -21,6 +21,7 @@ set(CORE_SOURCE_FILES
     "${PROJECT_SOURCE_DIR}/src/rt/lights/ambient.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/lights/point.cpp"
     "${PROJECT_SOURCE_DIR}/src/rt/lights/directional.cpp"
+    "${PROJECT_SOURCE_DIR}/src/rt/lights/ambient_occluder.cpp"
 
     # Materials.
     "${PROJECT_SOURCE_DIR}/src/rt/materials/material.cpp"

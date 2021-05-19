@@ -11,7 +11,7 @@ namespace RT {
 
     Directional::~Directional() = default;
 
-    glm::vec3 Directional::GetRadiance(const HitRecord &hitRecord) {
+    glm::vec3 Directional::GetRadiance(const HitRecord &hitRecord, const SceneData &sceneData) {
         return _brightness * _color;
     }
 

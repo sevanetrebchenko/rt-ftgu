@@ -14,12 +14,11 @@ namespace RT {
             ILight();
             virtual ~ILight();
 
-            [[nodiscard]] virtual glm::vec3 GetRadiance(const HitRecord& hitRecord) = 0;
+            [[nodiscard]] virtual glm::vec3 GetRadiance(const HitRecord &hitRecord, const SceneData &sceneData) = 0;
             [[nodiscard]] virtual glm::vec3 GetDirection(const HitRecord& hitRecord) = 0;
             [[nodiscard]] virtual bool IsShadowed(const Ray& ray, const SceneData& sceneData) const = 0;
 
             [[nodiscard]] bool CastsShadows() const;
-
 
         protected:
             bool _projectShadows;

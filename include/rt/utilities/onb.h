@@ -11,6 +11,8 @@ namespace RT {
             explicit OrthonormalBasis(const glm::vec3& normal);
             ~OrthonormalBasis();
 
+            OrthonormalBasis& operator=(const OrthonormalBasis& other);
+
             [[nodiscard]] glm::vec3 GetLocalVector(const glm::vec3& input) const;
             [[nodiscard]] glm::vec3 GetLocalVector(float x, float y, float z) const;
 

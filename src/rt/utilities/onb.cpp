@@ -10,6 +10,18 @@ namespace RT {
         _axes[0] = glm::cross(_axes[2], _axes[1]);
     }
 
+    OrthonormalBasis &OrthonormalBasis::operator=(const OrthonormalBasis &other) {
+        if (&other == this) {
+            return *this;
+        }
+
+        for (int i = 0; i < 3; ++i) {
+            _axes[i] = other._axes[i];
+        }
+
+        return *this;
+    }
+
     OrthonormalBasis::~OrthonormalBasis() = default;
 
     glm::vec3 OrthonormalBasis::GetLocalVector(const glm::vec3 &input) const {

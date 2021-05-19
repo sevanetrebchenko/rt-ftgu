@@ -18,7 +18,7 @@ namespace RT {
 
     glm::vec3 Matte::GetRadiance(const Ray& ray, const HitRecord &hitRecord, const SceneData& sceneData) {
         glm::vec3 D = -ray.direction;
-        glm::vec3 radiance = _ambient->GetReflectance(hitRecord, D) * sceneData.ambient->GetRadiance(hitRecord); // Start with ambient contribution.
+        glm::vec3 radiance = _ambient->GetReflectance(hitRecord, D) * sceneData.ambient->GetRadiance(hitRecord, sceneData); // Start with ambient contribution.
 
         for (ILight* light : *sceneData.lights) {
             glm::vec3 L = light->GetDirection(hitRecord);
@@ -33,7 +33,7 @@ namespace RT {
                 }
 
                 if (!shadowed) {
-                    radiance += _diffuse->GetBRDF(hitRecord, D, L) * light->GetRadiance(hitRecord) * NdotL; // Diffuse Phong model.
+                    radiance += _diffuse->GetBRDF(hitRecord, D, L) * light->GetRadiance(hitRecord, sceneData) * NdotL; // Diffuse Phong model.
                 }
             }
         }

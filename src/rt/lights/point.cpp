@@ -12,7 +12,7 @@ namespace RT {
 
     Point::~Point() = default;
 
-    glm::vec3 Point::GetRadiance(const HitRecord &hitRecord) {
+    glm::vec3 Point::GetRadiance(const HitRecord &hitRecord, const SceneData &sceneData) {
         return _brightness * _color;
     }
 

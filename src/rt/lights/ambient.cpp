@@ -10,7 +10,7 @@ namespace RT {
 
     Ambient::~Ambient() = default;
 
-    glm::vec3 Ambient::GetRadiance(const HitRecord &hitRecord) {
+    glm::vec3 Ambient::GetRadiance(const HitRecord &hitRecord, const SceneData &sceneData) {
         return _brightness * _color;
     }
 

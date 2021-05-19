@@ -13,6 +13,7 @@
 #include <rt/lights/ambient.h>
 #include <rt/lights/point.h>
 #include <rt/lights/directional.h>
+#include <rt/lights/ambient_occluder.h>
 
 // Materials.
 #include <rt/materials/matte.h>
@@ -33,8 +34,8 @@ namespace RT {
         _sampler->Generate();
 
         // Lights.
-        _ambient = new Ambient(1.0f, glm::vec3(0.5f));
-        _lights.push_back(new Point(glm::vec3(8.0f, 8.0f, 8.0f), 2.0f));
+        _ambient = new AmbientOccluder(1.0f, glm::vec3(1.0f));
+//        _lights.push_back(new Point(glm::vec3(8.0f, 8.0f, 8.0f), 2.0f));
 //        lights.push_back(new Directional(glm::vec3(1.0f, 0.0f, 1.0f)));
 
         // Objects.
